@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import pageobjects.HomePage;
 import managers.DriverManager;
 import utils.JsonReader;
+import utils.ScreenshotUtils;
 import com.google.gson.JsonObject;
 
 public class HomePageTests {
@@ -21,6 +22,9 @@ public class HomePageTests {
         HomePage homePage = new HomePage();
         homePage.navigateToHomePage();
         Assert.assertTrue(homePage.getPageTitle().contains("BBC"));
+        // Capture screenshot with status in filename
+        ScreenshotUtils.captureScreenshot(DriverManager.getDriver(), 
+            "verifyHomePageTitle");
     }
     
     @Test
@@ -28,6 +32,9 @@ public class HomePageTests {
         HomePage homePage = new HomePage();
         homePage.navigateToHomePage();
         homePage.clickNewsLink();
+        // Capture screenshot with status in filename
+        ScreenshotUtils.captureScreenshot(DriverManager.getDriver(), 
+            "testNewsNavigation");
         Assert.assertTrue(DriverManager.getDriver().getTitle().contains("News"));
     }
     

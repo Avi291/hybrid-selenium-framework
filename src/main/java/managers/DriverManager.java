@@ -21,6 +21,7 @@ public class DriverManager {
                     ChromeOptions options = new ChromeOptions();
                     if (headlessMode.equals("true")) {
                         options.addArguments("--headless");
+                        options.addArguments("--window-size=1920,1080");
                     }
                     options.addArguments("--remote-allow-origins=*");
                     options.addArguments("--disable-web-security");
