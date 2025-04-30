@@ -77,9 +77,8 @@ public class ExtentReportListener implements ITestListener {
             if (screenshotPath != null) {
                 try {
                 // Convert to relative path for ExtentReports
-                    String relativePath = new File(screenshotPath).getName();
                     test.fail("Screenshot of failure", 
-                        MediaEntityBuilder.createScreenCaptureFromPath(relativePath).build());
+                        MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
                 } catch (Exception e) {  // Changed from IOException to Exception
                     test.warning("Failed to attach screenshot: " + e.getMessage());
                 }

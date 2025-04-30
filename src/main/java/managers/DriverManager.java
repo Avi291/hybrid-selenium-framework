@@ -24,6 +24,7 @@ public class DriverManager {
                         options.addArguments("--window-size=1920,1080");
                     }
                     options.addArguments("--remote-allow-origins=*");
+                    options.addArguments("--disable-beforeunload", "--disable-translate");
                     options.addArguments("--disable-web-security");
                     options.addArguments("--no-sandbox");
                     options.addArguments("--disable-dev-shm-usage");

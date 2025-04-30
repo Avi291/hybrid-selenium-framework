@@ -33,6 +33,9 @@ public class HomePage {
 
     @FindBy(css = "h2[data-testid='card-headline']")
     private List<WebElement> headlineCards;
+
+    @FindBy(css = "h2[data-testid='texas-title']")
+    private WebElement moreNewsTitle;
     
     public HomePage() {
         this.driver = DriverManager.getDriver();
@@ -72,6 +75,10 @@ public class HomePage {
             }
         }
         return false;
+    }
+
+    public WebElement getMoreNewsTitle() {
+        return moreNewsTitle;
     }
     
     // Helper Method to Click Element

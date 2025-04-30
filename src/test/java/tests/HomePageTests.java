@@ -1,8 +1,5 @@
 package tests;
-
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.HomePage;
 import managers.DriverManager;
@@ -10,12 +7,7 @@ import utils.JsonReader;
 import utils.ScreenshotUtils;
 import com.google.gson.JsonObject;
 
-public class HomePageTests {
-    
-    @BeforeMethod
-    public void setup() {
-        DriverManager.getDriver();
-    }
+public class HomePageTests extends BaseTest {
     
     @Test
     public void verifyHomePageTitle() {
@@ -28,7 +20,7 @@ public class HomePageTests {
     }
     
     @Test
-    public void testNewsNavigation() {
+    public void testNewsNavigation() throws InterruptedException {
         HomePage homePage = new HomePage();
         homePage.navigateToHomePage();
         homePage.clickNewsLink();
@@ -36,6 +28,8 @@ public class HomePageTests {
         ScreenshotUtils.captureScreenshot(DriverManager.getDriver(), 
             "testNewsNavigation");
         Assert.assertTrue(DriverManager.getDriver().getTitle().contains("News"));
+        scrollToBottom();
+        System.out.println("Scrolled to bottom of the page");
     }
     
     @Test(dataProvider = "searchData")
@@ -57,8 +51,4 @@ public class HomePageTests {
         };
     }
     
-    @AfterMethod
-    public void teardown() {
-        DriverManager.quitDriver();
-    }
 }
