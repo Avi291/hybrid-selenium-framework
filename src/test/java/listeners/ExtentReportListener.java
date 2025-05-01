@@ -12,6 +12,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import utils.ScreenshotUtils;
 import java.io.File;
+import utils.ConfigReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -53,6 +54,13 @@ public class ExtentReportListener implements ITestListener {
         extent = new ExtentReports();
         extent.attachReporter(spark);
         extent.setSystemInfo("Framework", "Hybrid Selenium");
+        extent.setSystemInfo("OS", System.getProperty("os.name"));
+        extent.setSystemInfo("OS Version", System.getProperty("os.version"));
+        extent.setSystemInfo("Java Version", System.getProperty("java.version"));
+        extent.setSystemInfo("User", System.getProperty("user.name"));
+        extent.setSystemInfo("Time Zone", System.getProperty("user.timezone"));
+        extent.setSystemInfo("Execution Environment", System.getenv("ENVIRONMENT") != null ? System.getenv("ENVIRONMENT") : "Local");
+        extent.setSystemInfo("Browser", ConfigReader.getProperty("browser") != null ? ConfigReader.getProperty("browser") : "Not Specified");
     }
 
     @Override
